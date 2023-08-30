@@ -15,17 +15,39 @@
         font-family: "Jolly Lodger";
         src: url("/fonts/JollyLodger.ttf") format("truetype");
       }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("/fonts/Inter.ttf") format("truetype");
+      }
     </style>
   </head>
-  <body class="bg-blue-400">
+  <body class="bg-blue-400 px-10 py-5">
     <div
-      class="mx-10 my-5 rounded-2xl border-4 border-orange-600 bg-orange-400 p-5 [box-shadow:5px_5px_4px_rgba(234,99,0,0.75)]"
+      class="rounded-2xl border-4 border-orange-600 bg-orange-400 p-5 [box-shadow:5px_5px_4px_rgba(234,99,0,0.75)]"
     >
-      <h1 class="text-center text-7xl">
+      <h1 class="font-jolly-lodger text-center text-7xl">
         <span class="text-red-500">HACK CLUB NAVAL ARMADA</span>&nbsp;<span
           class="text-purple-600">FLAG REFERENDUM</span
         >
       </h1>
+    </div>
+    <div
+      class="mx-10 my-5 rounded-2xl border-4 border-sky-800 bg-sky-600 p-3 px-16 text-center text-white [box-shadow:5px_5px_4px_rgba(0,75,139,0.75)]"
+    >
+      <p class="text-5xl font-bold">
+        Hack Club needs a navy. Navies need flags.
+      </p>
+      <p class="my-1 text-4xl font-bold">
+        This is the Hack Club Naval Armada Flag Referendum.
+      </p>
+      <p class="text-3xl">
+        The winning flag will fly from the floating bouncy castle at Maker
+        Faire, from the flagpole at HQ, and eventually from every vessel in our
+        nascent global armada.
+      </p>
+      <!--TODO: implement slack sign in -->
+      <p class="my-1 text-3xl underline">Sign in with Slack to vote.</p>
     </div>
   </body>
 </html>

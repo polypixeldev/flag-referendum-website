@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Jolly Lodger", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        "jolly-lodger": ["Jolly Lodger", ...defaultTheme.fontFamily.sans],
       },
     },
   },
