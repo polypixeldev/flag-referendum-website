@@ -1,7 +1,9 @@
 import NextAuth from "next-auth";
 import SlackProvider from "next-auth/providers/slack";
 
-const handler = NextAuth({
+import type { NextAuthOptions } from "next-auth";
+
+const authOptions: NextAuthOptions = {
   providers: [
     SlackProvider({
       clientId: process.env.SLACK_CLIENT_ID!,
@@ -10,6 +12,24 @@ const handler = NextAuth({
       checks: ["none"],
     }),
   ],
-});
+  callbacks: {
+    async jwt({ token, profile }) {
+      if (profile) {
+        token.id = profile.sub;
+      }
 
-export { handler as GET, handler as POST };
+      return token;
+    },
+    async session({ session, token }) {
+      if (token.id) {
+        session.user.id = token.id;
+      }
+
+      return session;
+    },
+  },
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST, authOptions };
