@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 /* eslint-disable @next/next/no-img-element */
 type FlagProps = {
+  id: number;
   img: string;
 };
 
@@ -13,7 +14,7 @@ export default function Flag(props: FlagProps) {
   }, [score]);
 
   return (
-    <div className="m-3 rounded-xl border-4 border-emerald-500 bg-emerald-400 p-3 [box-shadow:5px_5px_4px_0px_rgba(0,207,146,0.75)]">
+    <div className="m-3 rounded-xl w-full md:w-2/5 border-4 border-emerald-500 bg-emerald-400 p-3 [box-shadow:5px_5px_4px_0px_rgba(0,207,146,0.75)]">
       <img src={props.img} alt="Flag" className="my-2" />
       <div className="p-3 bg-emerald-500 rounded-md">
         <input

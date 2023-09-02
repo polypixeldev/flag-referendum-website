@@ -2,17 +2,16 @@
 
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
+import { Suspense } from "react";
 
-import Flag from "../components/flag";
+import Flags from "../components/flags";
 import waves from "../../public/waves.svg";
 
 export default function Home() {
   const { status } = useSession();
 
-  console.log(status);
-
   return (
-    <main className="bg-blue-400">
+    <main className="bg-blue-400 min-h-screen">
       <div className="px-10 py-5">
         <div className="rounded-2xl border-4 border-orange-600 bg-orange-400 p-5 [box-shadow:5px_5px_4px_rgba(234,99,0,0.75)]">
           <h1 className="flex flex-row flex-wrap items-center justify-center text-center font-jolly-lodger text-7xl">
@@ -49,13 +48,7 @@ export default function Home() {
           )}
         </div>
         <div className="mx-7 flex flex-row flex-wrap items-center justify-evenly">
-          {/* <!--TODO: fetch flags from backend --> */}
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
-          <Flag img="https://assets.hackclub.com/banners/2023.svg" />
+          <Flags />
         </div>
       </div>
       <Image src={waves} alt="Waves" className="w-screen" />
