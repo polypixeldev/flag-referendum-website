@@ -7,8 +7,6 @@ import type { Session } from "next-auth";
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession<any, Session>(authOptions);
-  console.log("session: ");
-  console.log(session);
   const rJson = await request.json();
   const body = {
     ...rJson,
