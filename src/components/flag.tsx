@@ -1,24 +1,25 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
+import type { Dispatch, SetStateAction } from "react";
+
 /* eslint-disable @next/next/no-img-element */
 type FlagProps = {
   id: number;
   img: string;
+  scores: Map<number, number>;
+  setScores: Dispatch<SetStateAction<Map<number, number>>>;
 };
 
 export default function Flag(props: FlagProps) {
   const { status } = useSession();
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(props.scores.get(props.id) || 1);
 
   useEffect(() => {
     if (status === "authenticated") {
-      fetch("/api/flags/castVote", {
-        method: "POST",
-        body: JSON.stringify({
-          score,
-          flag_id: props.id,
-        }),
+      props.setScores((scores) => {
+        scores.set(props.id, score);
+        return scores;
       });
     }
 
@@ -33,7 +34,7 @@ export default function Flag(props: FlagProps) {
           <input
             type="range"
             className="w-full"
-            min={0}
+            min={1}
             max={10}
             step={1}
             value={score}

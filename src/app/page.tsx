@@ -34,7 +34,11 @@ export default function Home() {
           {status === "authenticated" ? (
             <p className="my-1 text-xl md:text-2xl lg:text-3xl">
               Vote for your favorite flag by giving each flag a score from 1 to
-              10, using the slider.
+              10, using the slider.{" "}
+              <strong>
+                You will not be able to change your vote once you click the
+                submit button.
+              </strong>
             </p>
           ) : (
             <button
@@ -47,9 +51,7 @@ export default function Home() {
             </button>
           )}
         </div>
-        <div className="mx-7 flex flex-row flex-wrap items-center justify-evenly">
-          <Flags />
-        </div>
+        <Flags />
       </div>
       <Image src={waves} alt="Waves" className="w-screen" />
     </main>
