@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
   if (res.status !== 200) {
     return new NextResponse(null, {
-      status: res.status,
+      status: 403,
     });
   } else {
     return new NextResponse(null, {
