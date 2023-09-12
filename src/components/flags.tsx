@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import Flag from "./flag";
 
-export default function Flags() {
+type FlagsProps = {
+  canVote: boolean;
+};
+
+export default function Flags(props: FlagsProps) {
   const [flags, setFlags] = useState([]);
   const [scores, setScores] = useState<Map<number, number>>(new Map());
   const [statuses, setStatuses] = useState<number[]>([]);
@@ -9,7 +13,10 @@ export default function Flags() {
   useEffect(() => {
     fetch("/api/flags/getFlags")
       .then((res) => res.json())
-      .then((json) => setFlags(json));
+      .then((json) => {
+        const randomFlags = json.sort(() => Math.random() - 0.5);
+        setFlags(randomFlags);
+      });
   }, []);
 
   useEffect(() => {
@@ -22,11 +29,17 @@ export default function Flags() {
   }, [flags]);
 
   if (flags.length === 0) {
-    return <p className="text-2xl p-1 text-center">Loading...</p>;
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <p className="bg-blue-500 w-min text-center sm:text-xl md:text-2xl lg:text-3xl border-4 border-blue-600 p-4 m-3 rounded-xl">
+          Loading...
+        </p>
+      </div>
+    );
   }
 
   async function castVotes() {
-    const promises = [...scores.entries()].map(([score, flagId]) => {
+    const promises = [...scores.entries()].map(([flagId, score]) => {
       return fetch("/api/flags/castVote", {
         method: "POST",
         body: JSON.stringify({
@@ -59,11 +72,16 @@ export default function Flags() {
             img={flag.image_url}
             scores={scores}
             setScores={setScores}
+            canVote={props.canVote}
           />
         ))}
       </div>
-      {!statuses.every((status) => status === 200) ? (
-        statuses.some((status) => status === 403) ? (
+      {statuses.length > 0 ? (
+        statuses.every((status) => status === 200) ? (
+          <p className="bg-green-500 sm:text-xl md:text-2xl lg:text-3xl border-4 border-green-600 p-4 m-3 rounded-xl">
+            Your votes have been cast!
+          </p>
+        ) : statuses.some((status) => status === 403) ? (
           <p className="bg-red-500 sm:text-xl md:text-2xl lg:text-3xl border-4 border-red-600 p-4 m-3 rounded-xl">
             You&apos;ve already voted!
           </p>
@@ -73,12 +91,14 @@ export default function Flags() {
           </p>
         )
       ) : null}
-      <button
-        onClick={castVotes}
-        className="bg-emerald-500 sm:text-2xl md:text-3xl lg:text-4xl border-4 border-emerald-400 p-4 my-3 rounded-xl"
-      >
-        SUBMIT
-      </button>
+      {props.canVote && (
+        <button
+          onClick={castVotes}
+          className="bg-emerald-500 sm:text-2xl md:text-3xl lg:text-4xl border-4 border-emerald-400 p-4 my-3 rounded-xl"
+        >
+          SUBMIT
+        </button>
+      )}
     </div>
   );
 }
