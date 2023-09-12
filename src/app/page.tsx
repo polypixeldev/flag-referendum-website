@@ -24,7 +24,7 @@ export default function Home() {
       <div className="px-10 py-5 min-h-screen">
         <div className="rounded-2xl border-4 border-orange-600 bg-orange-400 p-5 [box-shadow:5px_5px_4px_rgba(234,99,0,0.75)]">
           <h1 className="flex flex-row flex-wrap items-center justify-center text-center font-jolly-lodger text-7xl">
-            <span className="text-red-500 lg:mr-5">HACK CLUB NAVAL ARMADA</span>
+            <span className="text-red-600 lg:mr-5">HACK CLUB NAVAL ARMADA</span>
             <span className="text-purple-600">FLAG REFERENDUM</span>
           </h1>
         </div>
@@ -43,14 +43,14 @@ export default function Home() {
           {status === "authenticated" ? (
             hasVoted === true ? (
               <p className="my-1 text-xl md:text-2xl lg:text-3xl">
-                You have submitted your vote!
+                <strong>You have submitted your vote!</strong>
               </p>
             ) : (
               <p className="my-1 text-xl md:text-2xl lg:text-3xl">
                 Use the slider next to each flag to score it from 1 to 10.{" "}
                 <strong>
                   You will not be able to change your vote once you click the
-                  submit button.
+                  submit button. Voting ends Friday!
                 </strong>
               </p>
             )
