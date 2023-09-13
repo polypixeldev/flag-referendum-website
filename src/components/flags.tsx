@@ -64,7 +64,7 @@ export default function Flags(props: FlagsProps) {
 
   return (
     <div className="flex flex-col justify-start items-center">
-      <div className="mx-7 flex flex-row flex-wrap items-center justify-evenly">
+      <div className="md:mx-7 flex flex-row flex-wrap items-center justify-evenly">
         {flags.map((flag: any) => (
           <Flag
             key={flag.id}

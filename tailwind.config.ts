@@ -10,11 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+        sans: ["Phantom Sans", ...defaultTheme.fontFamily.sans],
         "jolly-lodger": [
           "var(--font-jolly-lodger)",
           ...defaultTheme.fontFamily.sans,
         ],
+      },
+      colors: {
+        "hc-orange": "#ff8c37",
+        "hc-blue": "#338eda",
       },
     },
   },

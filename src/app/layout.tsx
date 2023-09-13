@@ -1,10 +1,9 @@
 "use client";
 
 import "./globals.css";
-import { Inter, Jolly_Lodger } from "next/font/google";
+import { Jolly_Lodger } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jollyLodger = Jolly_Lodger({
   subsets: ["latin"],
   weight: "400",
@@ -26,7 +25,7 @@ export default function RootLayout({
           href="https://assets.hackclub.com/flag-standalone.svg"
         />
       </head>
-      <body className={`${inter.variable} ${jollyLodger.variable} font-sans`}>
+      <body className={`${jollyLodger.variable} font-sans`}>
         {/*@ts-ignore */}
         <SessionProvider session={props.session}>{children}</SessionProvider>
       </body>
